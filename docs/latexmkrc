@@ -1,0 +1,16 @@
+# pdfLaTeX, НЕ XeLaTeX (T2A + tempora).
+$pdf_mode = 1;
+$bibtex_use = 2;
+$out_dir = 'build';
+$clean_ext = 'bbl nav out snm synctex.gz run.xml';
+
+# bibtex се изпълнява ВЪТРЕ в build/, така че „references.bib“ вече не е в текущата
+# папка. Без този ред kpathsea го разрешава до чужд файл със същото име, доставен от
+# пакет на дистрибуцията (проверено: MiKTeX намира bibtex/bib/feupphdteses/references.bib).
+# Отказът е БЕЗШУМЕН: bibtex не съобщава грешка, а произвежда празна библиография.
+#
+# Разделителят се определя от kpathsea, тоест от двоичния файл, а не от обвивката:
+# под Git Bash / Cygwin / MSYS $^O не е „MSWin32“, но самият MiKTeX е за Windows и
+# очаква „;“. При „:“ пътят „D:/...“ се разцепва по буквата на устройството.
+my $sep = ($^O =~ /MSWin32|cygwin|msys/i) ? ';' : ':';
+$ENV{'BIBINPUTS'} = join($sep, '..', '.', ($ENV{'BIBINPUTS'} // ''));

@@ -1,0 +1,156 @@
+% Литературни източници.
+%
+% ВНИМАНИЕ: тук стоят само записи, чиито данни са проверени по издателска
+% страница, спецификация или официална документация. Не се попълват по памет.
+% Където нещо е останало непотвърдено, стои \TODO, не се измисля.
+% Незапълнените места се намират с: grep -rn 'TODO' references.bib
+
+% ============================================================================
+% СТАНДАРТИ И СПЕЦИФИКАЦИИ
+% ============================================================================
+
+@techreport{omg_uml251,
+  author       = {{Object Management Group}},
+  title        = {{OMG} Unified Modeling Language ({OMG} {UML}), Version 2.5.1},
+  institution  = {Object Management Group},
+  number       = {formal/2017-12-05},
+  year         = {2017},
+  url          = {https://www.omg.org/spec/UML/2.5.1/}
+}
+
+@techreport{iso_cpp20,
+  author       = {{ISO/IEC}},
+  title        = {{ISO/IEC} 14882:2020, Programming languages --- {C}++},
+  institution  = {International Organization for Standardization},
+  year         = {2020},
+  url          = {https://www.iso.org/standard/79358.html}
+}
+
+% ============================================================================
+% НАУЧНИ ПУБЛИКАЦИИ
+% ============================================================================
+
+@article{chikofsky1990reverse,
+  author  = {Chikofsky, Elliot J. and Cross, James H.},
+  title   = {Reverse Engineering and Design Recovery: A Taxonomy},
+  journal = {IEEE Software},
+  volume  = {7},
+  number  = {1},
+  pages   = {13--17},
+  year    = {1990},
+  doi     = {10.1109/52.43044}
+}
+
+@article{chen1976er,
+  author  = {Chen, Peter Pin-Shan},
+  title   = {The Entity-Relationship Model --- Toward a Unified View of Data},
+  journal = {ACM Transactions on Database Systems},
+  volume  = {1},
+  number  = {1},
+  pages   = {9--36},
+  year    = {1976},
+  doi     = {10.1145/320434.320440}
+}
+
+@inproceedings{beck1989crc,
+  author    = {Beck, Kent and Cunningham, Ward},
+  title     = {A Laboratory for Teaching Object-Oriented Thinking},
+  booktitle = {Conference Proceedings on Object-Oriented Programming Systems,
+               Languages and Applications (OOPSLA '89)},
+  pages     = {1--6},
+  year      = {1989},
+  doi       = {10.1145/74877.74879}
+}
+
+@inproceedings{ellson2001graphviz,
+  author    = {Ellson, John and Gansner, Emden and Koutsofios, Lefteris and
+               North, Stephen C. and Woodhull, Gordon},
+  title     = {Graphviz --- Open Source Graph Drawing Tools},
+  booktitle = {Graph Drawing, LNCS 2265},
+  pages     = {483--484},
+  publisher = {Springer},
+  year      = {2002},
+  doi       = {10.1007/3-540-45848-4_57}
+}
+
+% ============================================================================
+% КНИГИ
+% ============================================================================
+
+@book{booch2005userguide,
+  author    = {Booch, Grady and Rumbaugh, James and Jacobson, Ivar},
+  title     = {The Unified Modeling Language User Guide},
+  edition   = {2},
+  publisher = {Addison-Wesley},
+  year      = {2005},
+  isbn      = {978-0321267979}
+}
+
+@book{rumbaugh2004reference,
+  author    = {Rumbaugh, James and Jacobson, Ivar and Booch, Grady},
+  title     = {The Unified Modeling Language Reference Manual},
+  edition   = {2},
+  publisher = {Addison-Wesley},
+  year      = {2004},
+  isbn      = {978-0321245625}
+}
+
+@book{fowler2003distilled,
+  author    = {Fowler, Martin},
+  title     = {UML Distilled: A Brief Guide to the Standard Object Modeling Language},
+  edition   = {3},
+  publisher = {Addison-Wesley},
+  year      = {2003},
+  isbn      = {978-0321193681}
+}
+
+@book{ambler2003agiledb,
+  author    = {Ambler, Scott W.},
+  title     = {Agile Database Techniques: Effective Strategies for the Agile
+               Software Developer},
+  publisher = {John Wiley and Sons},
+  year      = {2003},
+  isbn      = {978-0471202837}
+}
+
+% ============================================================================
+% ДОКУМЕНТАЦИЯ НА ИНСТРУМЕНТИ
+% ============================================================================
+
+@misc{libclang_docs,
+  author       = {{LLVM Project}},
+  title        = {Clang C Interface to Clang ({libclang}) --- Documentation},
+  howpublished = {https://clang.llvm.org/doxygen/group\_\_CINDEX.html},
+  note         = {Достъпен онлайн}
+}
+
+@misc{plantuml_guide,
+  author       = {Roques, Arnaud},
+  title        = {{PlantUML} Language Reference Guide},
+  howpublished = {https://plantuml.com/guide},
+  note         = {Достъпен онлайн}
+}
+
+@misc{doxygen_manual,
+  author       = {van Heesch, Dimitri},
+  title        = {{Doxygen} Manual},
+  howpublished = {https://www.doxygen.nl/manual/},
+  note         = {Достъпен онлайн}
+}
+
+% ============================================================================
+% ПРЕДХОДНА РАБОТА НА СЪЩИЯ АВТОР
+% Библиографските данни се попълват от оригинала, не по памет.
+% ============================================================================
+
+% ДВОЙНИТЕ скоби не са излишни. BibTeX 0.99 не разбира UTF-8: без тях той съкращава
+% „Алекс“ до един БАЙТ и произвежда невалидна последователност, а стилът ieeetr
+% привежда заглавието към малки букви и превръща \TODO в \todo (недефинирана команда).
+% Външната скобa изважда полето от обработката и двата дефекта изчезват.
+@mastersthesis{tsvetanov_bsc_orm,
+  author = {{Алекс Цветанов}},
+  title  = {{\TODO{точното заглавие на дипломната работа за ОКС „Бакалавър“}}},
+  school = {Технически университет --- София, Факултет „Компютърни системи и технологии“},
+  year   = {\TODO{година на защита}},
+  type   = {Дипломна работа за ОКС „Бакалавър“}
+}
