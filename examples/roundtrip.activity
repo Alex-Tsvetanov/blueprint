@@ -1,0 +1,33 @@
+# The order of the operations in one full cycle. Read by "blueprint activity".
+name Full round trip
+
+start S
+action A1 : Run the compiler front end over the translation unit
+action A2 : Read the abstract syntax tree into the model
+decision D1 : Does any classifier carry the persistent stereotype
+action A3 : Emit the class diagram in both notations
+action A4 : Derive the relational schema
+action A5 : Generate the class skeletons from the schema
+action A6 : Extract a model from the generated skeletons
+action A7 : Read the diagram back into a model
+action A8 : Compare the two models
+decision D2 : Do the two models agree
+action A9 : Report the drift and fail the build
+action A10 : Report the round trip as closed
+end E
+
+S -> A1
+A1 -> A2
+A2 -> D1
+D1 -> A4 : yes
+D1 -> A3 : no
+A4 -> A5
+A5 -> A6
+A6 -> A8
+A3 -> A7
+A7 -> A8
+A8 -> D2
+D2 -> A10 : yes
+D2 -> A9 : no
+A9 -> E
+A10 -> E

@@ -1,0 +1,30 @@
+# The tool as its users meet it. Read by "blueprint usecase".
+name Blueprint
+system Blueprint
+
+actor DEV : Developer
+actor ARCH : Designer
+actor CI : Build pipeline
+
+case UC1 : Extract a model from C++ source
+case UC2 : Emit a class diagram
+case UC3 : Generate a relational schema
+case UC4 : Generate class skeletons from a schema
+case UC5 : Read a diagram back into a model
+case UC6 : Report the drift between diagram and code
+case UC7 : Choose the inheritance strategy
+
+DEV -> UC1
+DEV -> UC2
+DEV -> UC3
+DEV -> UC4
+ARCH -> UC2
+ARCH -> UC5
+ARCH -> UC6
+CI -> UC6
+
+UC2 -> UC1 : include
+UC3 -> UC1 : include
+UC6 -> UC1 : include
+UC6 -> UC5 : include
+UC7 -> UC3 : extend

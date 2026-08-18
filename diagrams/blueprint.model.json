@@ -1,0 +1,2262 @@
+{
+  "blueprint_model": 1,
+  "name": "blueprint",
+  "classifiers": [
+    {
+      "name": "ActivityEdge",
+      "qualified_name": "bp::ActivityEdge",
+      "kind": "struct",
+      "abstract": false,
+      "attributes": [
+        {
+          "name": "from",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "guard",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "to",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        }
+      ],
+      "operations": [],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/behavior.hpp",
+      "source_line": 52
+    },
+    {
+      "name": "ActivityModel",
+      "qualified_name": "bp::ActivityModel",
+      "kind": "struct",
+      "abstract": false,
+      "attributes": [
+        {
+          "name": "edges",
+          "type": "std::vector<bp::ActivityEdge>",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "*"
+        },
+        {
+          "name": "name",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "nodes",
+          "type": "std::vector<bp::ActivityNode>",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "*"
+        }
+      ],
+      "operations": [
+        {
+          "name": "node",
+          "return_type": "const ActivityNode *",
+          "parameters": [
+            {
+              "name": "id",
+              "type": "const std::string &"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        }
+      ],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/behavior.hpp",
+      "source_line": 58
+    },
+    {
+      "name": "ActivityNode",
+      "qualified_name": "bp::ActivityNode",
+      "kind": "struct",
+      "abstract": false,
+      "attributes": [
+        {
+          "name": "id",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "kind",
+          "type": "ActivityNodeKind",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "label",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        }
+      ],
+      "operations": [],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/behavior.hpp",
+      "source_line": 46
+    },
+    {
+      "name": "ActivityNodeKind",
+      "qualified_name": "bp::ActivityNodeKind",
+      "kind": "enumeration",
+      "abstract": false,
+      "enumerators": [
+        "Start",
+        "End",
+        "Action",
+        "Decision",
+        "Merge",
+        "Fork",
+        "Join"
+      ],
+      "attributes": [],
+      "operations": [],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/behavior.hpp",
+      "source_line": 44
+    },
+    {
+      "name": "Actor",
+      "qualified_name": "bp::Actor",
+      "kind": "struct",
+      "abstract": false,
+      "attributes": [
+        {
+          "name": "id",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "name",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        }
+      ],
+      "operations": [],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/behavior.hpp",
+      "source_line": 18
+    },
+    {
+      "name": "Attribute",
+      "qualified_name": "bp::Attribute",
+      "kind": "struct",
+      "abstract": false,
+      "attributes": [
+        {
+          "name": "multiplicity",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "name",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "scope",
+          "type": "Scope",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "tags",
+          "type": "std::vector<bp::TaggedValue>",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "*"
+        },
+        {
+          "name": "type",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "visibility",
+          "type": "Visibility",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        }
+      ],
+      "operations": [
+        {
+          "name": "operator==",
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "",
+              "type": "const Attribute &"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        }
+      ],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/model.hpp",
+      "source_line": 57
+    },
+    {
+      "name": "ClangInvocation",
+      "qualified_name": "bp::ClangInvocation",
+      "kind": "struct",
+      "abstract": false,
+      "attributes": [
+        {
+          "name": "clang",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "extra_flags",
+          "type": "std::vector<std::string>",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "include_dirs",
+          "type": "std::vector<std::string>",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "standard",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "stdstub_dir",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "target",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        }
+      ],
+      "operations": [],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/reader.hpp",
+      "source_line": 54
+    },
+    {
+      "name": "Classifier",
+      "qualified_name": "bp::Classifier",
+      "kind": "struct",
+      "abstract": false,
+      "attributes": [
+        {
+          "name": "attributes",
+          "type": "std::vector<bp::Attribute>",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "*"
+        },
+        {
+          "name": "enumerators",
+          "type": "std::vector<std::string>",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "is_abstract",
+          "type": "bool",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "kind",
+          "type": "ClassifierKind",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "name",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "operations",
+          "type": "std::vector<bp::Operation>",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "*"
+        },
+        {
+          "name": "qualified_name",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "source_file",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "source_line",
+          "type": "int",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "stereotypes",
+          "type": "std::vector<std::string>",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "tags",
+          "type": "std::vector<bp::TaggedValue>",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "*"
+        },
+        {
+          "name": "template_parameters",
+          "type": "std::vector<std::string>",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        }
+      ],
+      "operations": [
+        {
+          "name": "has_stereotype",
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "s",
+              "type": "const std::string &"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "operator==",
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "",
+              "type": "const Classifier &"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "tag",
+          "return_type": "const TaggedValue *",
+          "parameters": [
+            {
+              "name": "name",
+              "type": "const std::string &"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        }
+      ],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/model.hpp",
+      "source_line": 103
+    },
+    {
+      "name": "ClassifierKind",
+      "qualified_name": "bp::ClassifierKind",
+      "kind": "enumeration",
+      "abstract": false,
+      "enumerators": [
+        "Class",
+        "Struct",
+        "Interface",
+        "Enumeration",
+        "Template"
+      ],
+      "attributes": [],
+      "operations": [],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/model.hpp",
+      "source_line": 28
+    },
+    {
+      "name": "Column",
+      "qualified_name": "bp::Column",
+      "kind": "struct",
+      "abstract": false,
+      "attributes": [
+        {
+          "name": "name",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "not_null",
+          "type": "bool",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "primary_key",
+          "type": "bool",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "references_column",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "references_table",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "source_attribute",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "type",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        }
+      ],
+      "operations": [
+        {
+          "name": "operator==",
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "",
+              "type": "const Column &"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        }
+      ],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/schema.hpp",
+      "source_line": 28
+    },
+    {
+      "name": "DiffKind",
+      "qualified_name": "bp::DiffKind",
+      "kind": "enumeration",
+      "abstract": false,
+      "enumerators": [
+        "ClassAdded",
+        "ClassRemoved",
+        "ClassChanged",
+        "MemberAdded",
+        "MemberRemoved",
+        "MemberChanged",
+        "RelationAdded",
+        "RelationRemoved",
+        "RelationChanged"
+      ],
+      "attributes": [],
+      "operations": [],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/diff.hpp",
+      "source_line": 17
+    },
+    {
+      "name": "DiffReport",
+      "qualified_name": "bp::DiffReport",
+      "kind": "struct",
+      "abstract": false,
+      "attributes": [
+        {
+          "name": "differences",
+          "type": "std::vector<bp::Difference>",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "*"
+        }
+      ],
+      "operations": [
+        {
+          "name": "consistent",
+          "return_type": "bool",
+          "parameters": [],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "text",
+          "return_type": "std::string",
+          "parameters": [],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        }
+      ],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/diff.hpp",
+      "source_line": 38
+    },
+    {
+      "name": "Difference",
+      "qualified_name": "bp::Difference",
+      "kind": "struct",
+      "abstract": false,
+      "attributes": [
+        {
+          "name": "detail",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "element",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "kind",
+          "type": "DiffKind",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        }
+      ],
+      "operations": [
+        {
+          "name": "operator==",
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "",
+              "type": "const Difference &"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        }
+      ],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/diff.hpp",
+      "source_line": 31
+    },
+    {
+      "name": "InheritanceStrategy",
+      "qualified_name": "bp::InheritanceStrategy",
+      "kind": "enumeration",
+      "abstract": false,
+      "enumerators": [
+        "SingleTable",
+        "TablePerClass",
+        "TablePerConcrete"
+      ],
+      "attributes": [],
+      "operations": [],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/schema.hpp",
+      "source_line": 19
+    },
+    {
+      "name": "Json",
+      "qualified_name": "bp::Json",
+      "kind": "class",
+      "abstract": false,
+      "attributes": [
+        {
+          "name": "array_",
+          "type": "std::vector<bp::Json>",
+          "visibility": "private",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "bool_",
+          "type": "bool",
+          "visibility": "private",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "number_",
+          "type": "double",
+          "visibility": "private",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "object_",
+          "type": "std::vector<std::pair<std::string, bp::Json>>",
+          "visibility": "private",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "string_",
+          "type": "std::string",
+          "visibility": "private",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "type_",
+          "type": "Type",
+          "visibility": "private",
+          "scope": "instance",
+          "multiplicity": "1"
+        }
+      ],
+      "operations": [
+        {
+          "name": "Json",
+          "return_type": "",
+          "parameters": [],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": false
+        },
+        {
+          "name": "Json",
+          "return_type": "",
+          "parameters": [
+            {
+              "name": "v",
+              "type": "bool"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": false
+        },
+        {
+          "name": "Json",
+          "return_type": "",
+          "parameters": [
+            {
+              "name": "v",
+              "type": "const char *"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": false
+        },
+        {
+          "name": "Json",
+          "return_type": "",
+          "parameters": [
+            {
+              "name": "v",
+              "type": "double"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": false
+        },
+        {
+          "name": "Json",
+          "return_type": "",
+          "parameters": [
+            {
+              "name": "v",
+              "type": "int"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": false
+        },
+        {
+          "name": "Json",
+          "return_type": "",
+          "parameters": [
+            {
+              "name": "v",
+              "type": "long long"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": false
+        },
+        {
+          "name": "Json",
+          "return_type": "",
+          "parameters": [
+            {
+              "name": "",
+              "type": "std::nullptr_t"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": false
+        },
+        {
+          "name": "Json",
+          "return_type": "",
+          "parameters": [
+            {
+              "name": "v",
+              "type": "std::string"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": false
+        },
+        {
+          "name": "Json",
+          "return_type": "",
+          "parameters": [
+            {
+              "name": "v",
+              "type": "unsigned long long"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": false
+        },
+        {
+          "name": "array",
+          "return_type": "Json",
+          "parameters": [],
+          "visibility": "public",
+          "scope": "classifier",
+          "virtual": false,
+          "pure": false,
+          "const": false
+        },
+        {
+          "name": "as_bool",
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "fallback",
+              "type": "bool"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "as_int",
+          "return_type": "long long",
+          "parameters": [
+            {
+              "name": "fallback",
+              "type": "long long"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "as_number",
+          "return_type": "double",
+          "parameters": [
+            {
+              "name": "fallback",
+              "type": "double"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "as_string",
+          "return_type": "const std::string &",
+          "parameters": [],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "as_string_or",
+          "return_type": "std::string",
+          "parameters": [
+            {
+              "name": "fallback",
+              "type": "std::string"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "at",
+          "return_type": "const Json &",
+          "parameters": [
+            {
+              "name": "key",
+              "type": "std::string_view"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "dump",
+          "return_type": "std::string",
+          "parameters": [
+            {
+              "name": "indent",
+              "type": "int"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "dump_into",
+          "return_type": "void",
+          "parameters": [
+            {
+              "name": "out",
+              "type": "std::string &"
+            },
+            {
+              "name": "indent",
+              "type": "int"
+            },
+            {
+              "name": "depth",
+              "type": "int"
+            }
+          ],
+          "visibility": "private",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "find",
+          "return_type": "const Json *",
+          "parameters": [
+            {
+              "name": "key",
+              "type": "std::string_view"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "flag",
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "key",
+              "type": "std::string_view"
+            },
+            {
+              "name": "fallback",
+              "type": "bool"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "is_array",
+          "return_type": "bool",
+          "parameters": [],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "is_bool",
+          "return_type": "bool",
+          "parameters": [],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "is_null",
+          "return_type": "bool",
+          "parameters": [],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "is_number",
+          "return_type": "bool",
+          "parameters": [],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "is_object",
+          "return_type": "bool",
+          "parameters": [],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "is_string",
+          "return_type": "bool",
+          "parameters": [],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "items",
+          "return_type": "const std::vector<Json> &",
+          "parameters": [],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "members",
+          "return_type": "const std::vector<Member> &",
+          "parameters": [],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "object",
+          "return_type": "Json",
+          "parameters": [],
+          "visibility": "public",
+          "scope": "classifier",
+          "virtual": false,
+          "pure": false,
+          "const": false
+        },
+        {
+          "name": "parse",
+          "return_type": "Json",
+          "parameters": [
+            {
+              "name": "text",
+              "type": "std::string_view"
+            }
+          ],
+          "visibility": "public",
+          "scope": "classifier",
+          "virtual": false,
+          "pure": false,
+          "const": false
+        },
+        {
+          "name": "push_back",
+          "return_type": "void",
+          "parameters": [
+            {
+              "name": "v",
+              "type": "Json"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": false
+        },
+        {
+          "name": "set",
+          "return_type": "void",
+          "parameters": [
+            {
+              "name": "key",
+              "type": "std::string"
+            },
+            {
+              "name": "v",
+              "type": "Json"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": false
+        },
+        {
+          "name": "str",
+          "return_type": "std::string",
+          "parameters": [
+            {
+              "name": "key",
+              "type": "std::string_view"
+            },
+            {
+              "name": "fallback",
+              "type": "std::string"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "type",
+          "return_type": "Type",
+          "parameters": [],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        }
+      ],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/json.hpp",
+      "source_line": 28
+    },
+    {
+      "name": "Type",
+      "qualified_name": "bp::Json::Type",
+      "kind": "enumeration",
+      "abstract": false,
+      "enumerators": [
+        "Null",
+        "Bool",
+        "Number",
+        "String",
+        "Array",
+        "Object"
+      ],
+      "attributes": [],
+      "operations": [],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/json.hpp",
+      "source_line": 30
+    },
+    {
+      "name": "JsonError",
+      "qualified_name": "bp::JsonError",
+      "kind": "class",
+      "abstract": false,
+      "attributes": [],
+      "operations": [
+        {
+          "name": "JsonError",
+          "return_type": "",
+          "parameters": [
+            {
+              "name": "what",
+              "type": "const std::string &"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": false
+        }
+      ],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/json.hpp",
+      "source_line": 23
+    },
+    {
+      "name": "MemberClassification",
+      "qualified_name": "bp::MemberClassification",
+      "kind": "struct",
+      "abstract": false,
+      "attributes": [
+        {
+          "name": "is_relation",
+          "type": "bool",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "kind",
+          "type": "RelationKind",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "multiplicity",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "target",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        }
+      ],
+      "operations": [],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/reader.hpp",
+      "source_line": 39
+    },
+    {
+      "name": "Model",
+      "qualified_name": "bp::Model",
+      "kind": "struct",
+      "abstract": false,
+      "attributes": [
+        {
+          "name": "classifiers",
+          "type": "std::vector<bp::Classifier>",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "*"
+        },
+        {
+          "name": "name",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "relations",
+          "type": "std::vector<bp::Relation>",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "*"
+        }
+      ],
+      "operations": [
+        {
+          "name": "contains",
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "qualified_name",
+              "type": "const std::string &"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "element_count",
+          "return_type": "std::size_t",
+          "parameters": [],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "find",
+          "return_type": "Classifier *",
+          "parameters": [
+            {
+              "name": "qualified_name",
+              "type": "const std::string &"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": false
+        },
+        {
+          "name": "find",
+          "return_type": "const Classifier *",
+          "parameters": [
+            {
+              "name": "qualified_name",
+              "type": "const std::string &"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "from_json",
+          "return_type": "Model",
+          "parameters": [
+            {
+              "name": "j",
+              "type": "const Json &"
+            }
+          ],
+          "visibility": "public",
+          "scope": "classifier",
+          "virtual": false,
+          "pure": false,
+          "const": false
+        },
+        {
+          "name": "normalize",
+          "return_type": "void",
+          "parameters": [],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": false
+        },
+        {
+          "name": "to_json",
+          "return_type": "Json",
+          "parameters": [],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        }
+      ],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/model.hpp",
+      "source_line": 122
+    },
+    {
+      "name": "Notation",
+      "qualified_name": "bp::Notation",
+      "kind": "enumeration",
+      "abstract": false,
+      "enumerators": [
+        "PlantUml",
+        "Mermaid"
+      ],
+      "attributes": [],
+      "operations": [],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/emit.hpp",
+      "source_line": 16
+    },
+    {
+      "name": "Operation",
+      "qualified_name": "bp::Operation",
+      "kind": "struct",
+      "abstract": false,
+      "attributes": [
+        {
+          "name": "is_const",
+          "type": "bool",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "is_pure",
+          "type": "bool",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "is_virtual",
+          "type": "bool",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "name",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "parameters",
+          "type": "std::vector<bp::Parameter>",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "*"
+        },
+        {
+          "name": "return_type",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "scope",
+          "type": "Scope",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "visibility",
+          "type": "Visibility",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        }
+      ],
+      "operations": [
+        {
+          "name": "operator==",
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "",
+              "type": "const Operation &"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "signature",
+          "return_type": "std::string",
+          "parameters": [],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        }
+      ],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/model.hpp",
+      "source_line": 73
+    },
+    {
+      "name": "Parameter",
+      "qualified_name": "bp::Parameter",
+      "kind": "struct",
+      "abstract": false,
+      "attributes": [
+        {
+          "name": "name",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "type",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        }
+      ],
+      "operations": [
+        {
+          "name": "operator==",
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "",
+              "type": "const Parameter &"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        }
+      ],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/model.hpp",
+      "source_line": 67
+    },
+    {
+      "name": "ReaderOptions",
+      "qualified_name": "bp::ReaderOptions",
+      "kind": "struct",
+      "abstract": false,
+      "attributes": [
+        {
+          "name": "model_name",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "roots",
+          "type": "std::vector<std::string>",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "skip_implicit",
+          "type": "bool",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "skip_private",
+          "type": "bool",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        }
+      ],
+      "operations": [],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/reader.hpp",
+      "source_line": 20
+    },
+    {
+      "name": "Relation",
+      "qualified_name": "bp::Relation",
+      "kind": "struct",
+      "abstract": false,
+      "attributes": [
+        {
+          "name": "from",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "is_virtual_base",
+          "type": "bool",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "kind",
+          "type": "RelationKind",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "label",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "multiplicity",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "to",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "visibility",
+          "type": "Visibility",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        }
+      ],
+      "operations": [
+        {
+          "name": "key",
+          "return_type": "std::string",
+          "parameters": [],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "operator==",
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "",
+              "type": "const Relation &"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        }
+      ],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/model.hpp",
+      "source_line": 89
+    },
+    {
+      "name": "RelationKind",
+      "qualified_name": "bp::RelationKind",
+      "kind": "enumeration",
+      "abstract": false,
+      "enumerators": [
+        "Generalization",
+        "Realization",
+        "Association",
+        "Aggregation",
+        "Composition",
+        "Dependency"
+      ],
+      "attributes": [],
+      "operations": [],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/model.hpp",
+      "source_line": 31
+    },
+    {
+      "name": "Schema",
+      "qualified_name": "bp::Schema",
+      "kind": "struct",
+      "abstract": false,
+      "attributes": [
+        {
+          "name": "name",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "strategy",
+          "type": "InheritanceStrategy",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "tables",
+          "type": "std::vector<bp::Table>",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "*"
+        }
+      ],
+      "operations": [
+        {
+          "name": "table",
+          "return_type": "const Table *",
+          "parameters": [
+            {
+              "name": "name",
+              "type": "const std::string &"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        }
+      ],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/schema.hpp",
+      "source_line": 51
+    },
+    {
+      "name": "SchemaReport",
+      "qualified_name": "bp::SchemaReport",
+      "kind": "struct",
+      "abstract": false,
+      "attributes": [
+        {
+          "name": "notes",
+          "type": "std::vector<std::string>",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "schema",
+          "type": "Schema",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        }
+      ],
+      "operations": [],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/schema.hpp",
+      "source_line": 61
+    },
+    {
+      "name": "Scope",
+      "qualified_name": "bp::Scope",
+      "kind": "enumeration",
+      "abstract": false,
+      "enumerators": [
+        "Instance",
+        "Classifier"
+      ],
+      "attributes": [],
+      "operations": [],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/model.hpp",
+      "source_line": 26
+    },
+    {
+      "name": "Table",
+      "qualified_name": "bp::Table",
+      "kind": "struct",
+      "abstract": false,
+      "attributes": [
+        {
+          "name": "columns",
+          "type": "std::vector<bp::Column>",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "*"
+        },
+        {
+          "name": "is_join_table",
+          "type": "bool",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "name",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "source_classifier",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        }
+      ],
+      "operations": [
+        {
+          "name": "column",
+          "return_type": "const Column *",
+          "parameters": [
+            {
+              "name": "name",
+              "type": "const std::string &"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "operator==",
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "",
+              "type": "const Table &"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        }
+      ],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/schema.hpp",
+      "source_line": 41
+    },
+    {
+      "name": "TaggedValue",
+      "qualified_name": "bp::TaggedValue",
+      "kind": "struct",
+      "abstract": false,
+      "attributes": [
+        {
+          "name": "name",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "value",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        }
+      ],
+      "operations": [
+        {
+          "name": "operator==",
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "",
+              "type": "const TaggedValue &"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        }
+      ],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/model.hpp",
+      "source_line": 51
+    },
+    {
+      "name": "UseCase",
+      "qualified_name": "bp::UseCase",
+      "kind": "struct",
+      "abstract": false,
+      "attributes": [
+        {
+          "name": "id",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "name",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        }
+      ],
+      "operations": [],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/behavior.hpp",
+      "source_line": 23
+    },
+    {
+      "name": "UseCaseLink",
+      "qualified_name": "bp::UseCaseLink",
+      "kind": "struct",
+      "abstract": false,
+      "attributes": [
+        {
+          "name": "from",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "kind",
+          "type": "UseCaseLinkKind",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "to",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        }
+      ],
+      "operations": [],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/behavior.hpp",
+      "source_line": 30
+    },
+    {
+      "name": "UseCaseLinkKind",
+      "qualified_name": "bp::UseCaseLinkKind",
+      "kind": "enumeration",
+      "abstract": false,
+      "enumerators": [
+        "Association",
+        "Include",
+        "Extend",
+        "Generalization"
+      ],
+      "attributes": [],
+      "operations": [],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/behavior.hpp",
+      "source_line": 28
+    },
+    {
+      "name": "UseCaseModel",
+      "qualified_name": "bp::UseCaseModel",
+      "kind": "struct",
+      "abstract": false,
+      "attributes": [
+        {
+          "name": "actors",
+          "type": "std::vector<bp::Actor>",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "*"
+        },
+        {
+          "name": "links",
+          "type": "std::vector<bp::UseCaseLink>",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "*"
+        },
+        {
+          "name": "name",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "system",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "use_cases",
+          "type": "std::vector<bp::UseCase>",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "*"
+        }
+      ],
+      "operations": [],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/behavior.hpp",
+      "source_line": 36
+    },
+    {
+      "name": "Visibility",
+      "qualified_name": "bp::Visibility",
+      "kind": "enumeration",
+      "abstract": false,
+      "enumerators": [
+        "Public",
+        "Protected",
+        "Private",
+        "Package"
+      ],
+      "attributes": [],
+      "operations": [],
+      "source_file": "D:/GitHub/blueprint-uml-design/include\\blueprint/model.hpp",
+      "source_line": 22
+    }
+  ],
+  "relations": [
+    {
+      "from": "bp::ActivityModel",
+      "to": "bp::ActivityEdge",
+      "kind": "composition",
+      "label": "edges",
+      "multiplicity": "*",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::ActivityModel",
+      "to": "bp::ActivityNode",
+      "kind": "composition",
+      "label": "nodes",
+      "multiplicity": "*",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::ActivityNode",
+      "to": "bp::ActivityNodeKind",
+      "kind": "composition",
+      "label": "kind",
+      "multiplicity": "1",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::Attribute",
+      "to": "bp::Scope",
+      "kind": "composition",
+      "label": "scope",
+      "multiplicity": "1",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::Attribute",
+      "to": "bp::TaggedValue",
+      "kind": "composition",
+      "label": "tags",
+      "multiplicity": "*",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::Attribute",
+      "to": "bp::Visibility",
+      "kind": "composition",
+      "label": "visibility",
+      "multiplicity": "1",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::Classifier",
+      "to": "bp::Attribute",
+      "kind": "composition",
+      "label": "attributes",
+      "multiplicity": "*",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::Classifier",
+      "to": "bp::ClassifierKind",
+      "kind": "composition",
+      "label": "kind",
+      "multiplicity": "1",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::Classifier",
+      "to": "bp::Operation",
+      "kind": "composition",
+      "label": "operations",
+      "multiplicity": "*",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::Classifier",
+      "to": "bp::TaggedValue",
+      "kind": "composition",
+      "label": "tags",
+      "multiplicity": "*",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::DiffReport",
+      "to": "bp::Difference",
+      "kind": "composition",
+      "label": "differences",
+      "multiplicity": "*",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::Difference",
+      "to": "bp::DiffKind",
+      "kind": "composition",
+      "label": "kind",
+      "multiplicity": "1",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::Json",
+      "to": "bp::Json::Type",
+      "kind": "composition",
+      "label": "type_",
+      "multiplicity": "1",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::MemberClassification",
+      "to": "bp::RelationKind",
+      "kind": "composition",
+      "label": "kind",
+      "multiplicity": "1",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::Model",
+      "to": "bp::Classifier",
+      "kind": "composition",
+      "label": "classifiers",
+      "multiplicity": "*",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::Model",
+      "to": "bp::Relation",
+      "kind": "composition",
+      "label": "relations",
+      "multiplicity": "*",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::Model",
+      "to": "bp::Json",
+      "kind": "dependency",
+      "label": "",
+      "multiplicity": "",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::Operation",
+      "to": "bp::Parameter",
+      "kind": "composition",
+      "label": "parameters",
+      "multiplicity": "*",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::Operation",
+      "to": "bp::Scope",
+      "kind": "composition",
+      "label": "scope",
+      "multiplicity": "1",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::Operation",
+      "to": "bp::Visibility",
+      "kind": "composition",
+      "label": "visibility",
+      "multiplicity": "1",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::Relation",
+      "to": "bp::RelationKind",
+      "kind": "composition",
+      "label": "kind",
+      "multiplicity": "1",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::Relation",
+      "to": "bp::Visibility",
+      "kind": "composition",
+      "label": "visibility",
+      "multiplicity": "1",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::SchemaReport",
+      "to": "bp::Schema",
+      "kind": "composition",
+      "label": "schema",
+      "multiplicity": "1",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::Schema",
+      "to": "bp::InheritanceStrategy",
+      "kind": "composition",
+      "label": "strategy",
+      "multiplicity": "1",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::Schema",
+      "to": "bp::Table",
+      "kind": "composition",
+      "label": "tables",
+      "multiplicity": "*",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::Table",
+      "to": "bp::Column",
+      "kind": "composition",
+      "label": "columns",
+      "multiplicity": "*",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::UseCaseLink",
+      "to": "bp::UseCaseLinkKind",
+      "kind": "composition",
+      "label": "kind",
+      "multiplicity": "1",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::UseCaseModel",
+      "to": "bp::Actor",
+      "kind": "composition",
+      "label": "actors",
+      "multiplicity": "*",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::UseCaseModel",
+      "to": "bp::UseCaseLink",
+      "kind": "composition",
+      "label": "links",
+      "multiplicity": "*",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "bp::UseCaseModel",
+      "to": "bp::UseCase",
+      "kind": "composition",
+      "label": "use_cases",
+      "multiplicity": "*",
+      "virtual_base": false,
+      "visibility": "public"
+    }
+  ]
+}

@@ -1,0 +1,473 @@
+{
+  "blueprint_model": 1,
+  "name": "library",
+  "classifiers": [
+    {
+      "name": "Author",
+      "qualified_name": "library::Author",
+      "kind": "class",
+      "abstract": false,
+      "stereotypes": [
+        "persistent"
+      ],
+      "tags": [
+        {
+          "name": "table",
+          "value": "authors"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "birth_year",
+          "type": "int",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "id",
+          "type": "int",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1",
+          "tags": [
+            {
+              "name": "pk",
+              "value": "true"
+            }
+          ]
+        },
+        {
+          "name": "name",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1",
+          "tags": [
+            {
+              "name": "column-type",
+              "value": "VARCHAR(120)"
+            }
+          ]
+        }
+      ],
+      "operations": []
+    },
+    {
+      "name": "Book",
+      "qualified_name": "library::Book",
+      "kind": "class",
+      "abstract": false,
+      "stereotypes": [
+        "persistent"
+      ],
+      "tags": [
+        {
+          "name": "table",
+          "value": "books"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "isbn",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1",
+          "tags": [
+            {
+              "name": "column-type",
+              "value": "CHAR(13)"
+            }
+          ]
+        },
+        {
+          "name": "page_count",
+          "type": "int",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        }
+      ],
+      "operations": [
+        {
+          "name": "late_fee_per_day",
+          "return_type": "double",
+          "parameters": [],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        }
+      ]
+    },
+    {
+      "name": "Catalogue",
+      "qualified_name": "library::Catalogue",
+      "kind": "class",
+      "abstract": false,
+      "stereotypes": [
+        "persistent"
+      ],
+      "tags": [
+        {
+          "name": "table",
+          "value": "catalogues"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "curator",
+          "type": "Author",
+          "visibility": "private",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "default_shelf",
+          "type": "std::shared_ptr<library::Shelf>",
+          "visibility": "private",
+          "scope": "instance",
+          "multiplicity": "0..1"
+        },
+        {
+          "name": "id",
+          "type": "int",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1",
+          "tags": [
+            {
+              "name": "pk",
+              "value": "true"
+            }
+          ]
+        },
+        {
+          "name": "items",
+          "type": "std::vector<std::unique_ptr<library::LibraryItem>>",
+          "visibility": "private",
+          "scope": "instance",
+          "multiplicity": "*"
+        },
+        {
+          "name": "name",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "overflow",
+          "type": "Shelf *",
+          "visibility": "private",
+          "scope": "instance",
+          "multiplicity": "0..1"
+        }
+      ],
+      "operations": [
+        {
+          "name": "add",
+          "return_type": "void",
+          "parameters": [
+            {
+              "name": "item",
+              "type": "std::unique_ptr<library::LibraryItem>"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": false
+        },
+        {
+          "name": "locate",
+          "return_type": "Shelf *",
+          "parameters": [
+            {
+              "name": "title",
+              "type": "const std::string &"
+            }
+          ],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        }
+      ]
+    },
+    {
+      "name": "Journal",
+      "qualified_name": "library::Journal",
+      "kind": "class",
+      "abstract": false,
+      "stereotypes": [
+        "persistent"
+      ],
+      "tags": [
+        {
+          "name": "table",
+          "value": "journals"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "issn",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1",
+          "tags": [
+            {
+              "name": "column-type",
+              "value": "CHAR(9)"
+            }
+          ]
+        },
+        {
+          "name": "volume",
+          "type": "int",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1"
+        }
+      ],
+      "operations": [
+        {
+          "name": "is_lendable",
+          "return_type": "bool",
+          "parameters": [],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "late_fee_per_day",
+          "return_type": "double",
+          "parameters": [],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": false,
+          "pure": false,
+          "const": true
+        }
+      ]
+    },
+    {
+      "name": "LibraryItem",
+      "qualified_name": "library::LibraryItem",
+      "kind": "class",
+      "abstract": true,
+      "stereotypes": [
+        "persistent"
+      ],
+      "tags": [
+        {
+          "name": "inheritance",
+          "value": "single-table"
+        },
+        {
+          "name": "table",
+          "value": "items"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "author",
+          "type": "Author",
+          "visibility": "protected",
+          "scope": "instance",
+          "multiplicity": "1"
+        },
+        {
+          "name": "id",
+          "type": "int",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1",
+          "tags": [
+            {
+              "name": "pk",
+              "value": "true"
+            }
+          ]
+        },
+        {
+          "name": "shelf",
+          "type": "Shelf *",
+          "visibility": "protected",
+          "scope": "instance",
+          "multiplicity": "0..1"
+        },
+        {
+          "name": "title",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1",
+          "tags": [
+            {
+              "name": "column-type",
+              "value": "VARCHAR(200)"
+            }
+          ]
+        }
+      ],
+      "operations": [
+        {
+          "name": "is_lendable",
+          "return_type": "bool",
+          "parameters": [],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": true,
+          "pure": false,
+          "const": true
+        },
+        {
+          "name": "late_fee_per_day",
+          "return_type": "double",
+          "parameters": [],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": true,
+          "pure": true,
+          "const": true
+        },
+        {
+          "name": "~LibraryItem",
+          "return_type": "",
+          "parameters": [],
+          "visibility": "public",
+          "scope": "instance",
+          "virtual": true,
+          "pure": false,
+          "const": false
+        }
+      ]
+    },
+    {
+      "name": "Shelf",
+      "qualified_name": "library::Shelf",
+      "kind": "class",
+      "abstract": false,
+      "stereotypes": [
+        "persistent"
+      ],
+      "tags": [
+        {
+          "name": "table",
+          "value": "shelves"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "code",
+          "type": "std::string",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1",
+          "tags": [
+            {
+              "name": "column-type",
+              "value": "CHAR(8)"
+            }
+          ]
+        },
+        {
+          "name": "id",
+          "type": "int",
+          "visibility": "public",
+          "scope": "instance",
+          "multiplicity": "1",
+          "tags": [
+            {
+              "name": "pk",
+              "value": "true"
+            }
+          ]
+        }
+      ],
+      "operations": []
+    }
+  ],
+  "relations": [
+    {
+      "from": "library::Book",
+      "to": "library::LibraryItem",
+      "kind": "generalization",
+      "label": "",
+      "multiplicity": "",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "library::Catalogue",
+      "to": "library::Shelf",
+      "kind": "aggregation",
+      "label": "default_shelf",
+      "multiplicity": "0..1",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "library::Catalogue",
+      "to": "library::Shelf",
+      "kind": "association",
+      "label": "overflow",
+      "multiplicity": "0..1",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "library::Catalogue",
+      "to": "library::Author",
+      "kind": "composition",
+      "label": "curator",
+      "multiplicity": "1",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "library::Catalogue",
+      "to": "library::LibraryItem",
+      "kind": "composition",
+      "label": "items",
+      "multiplicity": "*",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "library::Journal",
+      "to": "library::LibraryItem",
+      "kind": "generalization",
+      "label": "",
+      "multiplicity": "",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "library::LibraryItem",
+      "to": "library::Shelf",
+      "kind": "association",
+      "label": "shelf",
+      "multiplicity": "0..1",
+      "virtual_base": false,
+      "visibility": "public"
+    },
+    {
+      "from": "library::LibraryItem",
+      "to": "library::Author",
+      "kind": "composition",
+      "label": "author",
+      "multiplicity": "1",
+      "virtual_base": false,
+      "visibility": "public"
+    }
+  ]
+}
