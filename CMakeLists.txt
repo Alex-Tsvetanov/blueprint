@@ -96,3 +96,15 @@ add_custom_target(measure
     USES_TERMINAL
     VERBATIM
 )
+
+# The divergence experiment: one edit at a time, and what the checker says.
+add_custom_target(divergence
+    COMMAND ${CMAKE_COMMAND}
+            -DBLUEPRINT_EXE=$<TARGET_FILE:blueprint>
+            -DSOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}
+            -DBINARY_DIR=${CMAKE_CURRENT_BINARY_DIR}
+            -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/divergence.cmake
+    DEPENDS blueprint
+    USES_TERMINAL
+    VERBATIM
+)
