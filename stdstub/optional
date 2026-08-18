@@ -1,0 +1,16 @@
+#pragma once
+namespace std {
+template <class T> class optional {
+public:
+    optional();
+    optional(const T& value);
+    bool has_value() const;
+    explicit operator bool() const;
+    T& value();
+    const T& value() const;
+    T* operator->();
+    T& operator*();
+    void reset();
+    bool operator==(const optional& other) const;
+};
+}  // namespace std

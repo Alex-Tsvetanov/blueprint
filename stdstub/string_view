@@ -1,0 +1,21 @@
+#pragma once
+#include <cstddef>
+#include <string>
+namespace std {
+class string_view {
+public:
+    using size_type = size_t;
+    static const size_type npos = static_cast<size_type>(-1);
+    string_view();
+    string_view(const char* text);
+    string_view(const char* text, size_type count);
+    string_view(const string& text);
+    const char* data() const;
+    size_type size() const;
+    bool empty() const;
+    char operator[](size_type index) const;
+    string_view substr(size_type pos = 0, size_type count = npos) const;
+    void remove_prefix(size_type count);
+    bool operator==(string_view other) const;
+};
+}  // namespace std

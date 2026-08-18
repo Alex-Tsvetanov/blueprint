@@ -1,0 +1,16 @@
+#pragma once
+namespace std {
+template <class T> struct remove_reference { using type = T; };
+template <class T> struct remove_reference<T&> { using type = T; };
+template <class T> struct remove_reference<T&&> { using type = T; };
+template <class T> constexpr typename remove_reference<T>::type&& move(T&& value) noexcept;
+template <class T> constexpr T&& forward(typename remove_reference<T>::type& value) noexcept;
+template <class A, class B> struct pair {
+    A first;
+    B second;
+    pair();
+    pair(const A& a, const B& b);
+    bool operator==(const pair& other) const;
+};
+template <class A, class B> pair<A, B> make_pair(A a, B b);
+}  // namespace std

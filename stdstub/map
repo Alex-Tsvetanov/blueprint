@@ -1,0 +1,25 @@
+#pragma once
+#include <cstddef>
+#include <utility>
+namespace std {
+template <class K, class V> class map {
+public:
+    using size_type = size_t;
+    using value_type = pair<const K, V>;
+    using iterator = value_type*;
+    using const_iterator = const value_type*;
+    map();
+    V& operator[](const K& key);
+    iterator begin();
+    iterator end();
+    const_iterator begin() const;
+    const_iterator end() const;
+    iterator find(const K& key);
+    const_iterator find(const K& key) const;
+    size_type count(const K& key) const;
+    size_type size() const;
+    bool empty() const;
+    void clear();
+};
+template <class K, class V> class unordered_map : public map<K, V> {};
+}  // namespace std

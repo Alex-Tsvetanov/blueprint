@@ -1,0 +1,7 @@
+#pragma once
+namespace std {
+using size_t = decltype(sizeof(0));
+using ptrdiff_t = decltype((char*)0 - (char*)0);
+using nullptr_t = decltype(nullptr);
+}  // namespace std
+using size_t = std::size_t;

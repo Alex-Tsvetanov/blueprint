@@ -1,0 +1,32 @@
+#pragma once
+namespace std {
+template <class T> class unique_ptr {
+public:
+    unique_ptr();
+    explicit unique_ptr(T* raw);
+    ~unique_ptr();
+    T* get() const;
+    T& operator*() const;
+    T* operator->() const;
+    explicit operator bool() const;
+    void reset(T* raw = nullptr);
+    T* release();
+};
+template <class T> class shared_ptr {
+public:
+    shared_ptr();
+    explicit shared_ptr(T* raw);
+    T* get() const;
+    T& operator*() const;
+    T* operator->() const;
+    explicit operator bool() const;
+    long use_count() const;
+    bool operator==(const shared_ptr& other) const;
+};
+template <class T> class weak_ptr {
+public:
+    weak_ptr();
+    shared_ptr<T> lock() const;
+    bool expired() const;
+};
+}  // namespace std

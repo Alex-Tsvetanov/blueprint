@@ -1,0 +1,47 @@
+#pragma once
+#include <cstddef>
+namespace std {
+class string {
+public:
+    using size_type = size_t;
+    using value_type = char;
+    static const size_type npos = static_cast<size_type>(-1);
+    string();
+    string(const char* text);
+    string(const char* text, size_type count);
+    string(size_type count, char c);
+    string(const string& other);
+    string& operator=(const string& other);
+    ~string();
+    const char* c_str() const;
+    const char* data() const;
+    size_type size() const;
+    size_type length() const;
+    bool empty() const;
+    char& operator[](size_type index);
+    const char& operator[](size_type index) const;
+    char& front();
+    char& back();
+    void push_back(char c);
+    void pop_back();
+    void clear();
+    void reserve(size_type capacity);
+    string substr(size_type pos = 0, size_type count = npos) const;
+    size_type find(const string& needle, size_type pos = 0) const;
+    size_type find(char c, size_type pos = 0) const;
+    size_type rfind(const string& needle, size_type pos = npos) const;
+    size_type rfind(char c, size_type pos = npos) const;
+    int compare(size_type pos, size_type count, const string& other) const;
+    string& operator+=(const string& other);
+    string& operator+=(char c);
+    string& operator+=(const char* text);
+    bool operator==(const string& other) const;
+};
+string operator+(const string& a, const string& b);
+string operator+(const string& a, const char* b);
+string operator+(const char* a, const string& b);
+string to_string(int value);
+string to_string(long long value);
+string to_string(unsigned long long value);
+string to_string(double value);
+}  // namespace std
