@@ -1,0 +1,8 @@
+# Byte counts of the source text and of the abstract syntax tree are reported
+# in docs/chapters/06_results.tex. A CRLF checkout changes them, so a clean
+# clone on Windows would not reproduce the table. Checkout is pinned to LF.
+* text=auto eol=lf
+
+# Binary, never touched.
+*.pdf   binary
+*.png   binary

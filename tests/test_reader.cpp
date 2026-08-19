@@ -303,3 +303,58 @@ TEST(reader, builds_a_clang_command_that_replaces_the_standard_library) {
     CHECK_CONTAINS(cmd, "-fsyntax-only");
     CHECK_CONTAINS(cmd, "\"include\"");
 }
+
+// The interface is not read from the source, it is inferred from the model:
+// no attributes, and every operation pure. Table tab:extraction of the report
+// claims this row, so it needs a case of its own rather than an inspection.
+TEST(reader, infers_an_interface_from_a_classifier_with_only_pure_operations) {
+    const char* json = R"JSON(
+{"kind":"TranslationUnitDecl","inner":[
+ {"kind":"NamespaceDecl","name":"app","loc":{"file":"/proj/i.hpp","line":1},"inner":[
+  {"kind":"CXXRecordDecl","name":"Drawable","tagUsed":"class","completeDefinition":true,
+   "loc":{"line":3},"definitionData":{"isAbstract":true},"inner":[
+    {"kind":"AccessSpecDecl","access":"public"},
+    {"kind":"CXXDestructorDecl","name":"~Drawable","virtual":true,
+     "type":{"qualType":"void () noexcept"}},
+    {"kind":"CXXMethodDecl","name":"draw","virtual":true,"pure":true,
+     "type":{"qualType":"void () const"}}
+   ]},
+  {"kind":"CXXRecordDecl","name":"Widget","tagUsed":"class","completeDefinition":true,
+   "loc":{"line":12},"definitionData":{"isAbstract":true},"inner":[
+    {"kind":"AccessSpecDecl","access":"public"},
+    {"kind":"CXXMethodDecl","name":"draw","virtual":true,"pure":true,
+     "type":{"qualType":"void () const"}},
+    {"kind":"AccessSpecDecl","access":"private"},
+    {"kind":"FieldDecl","name":"width_","type":{"qualType":"int"}}
+   ]},
+  {"kind":"CXXRecordDecl","name":"Plain","tagUsed":"class","completeDefinition":true,
+   "loc":{"line":20},"inner":[
+    {"kind":"AccessSpecDecl","access":"public"},
+    {"kind":"CXXMethodDecl","name":"draw","virtual":true,"type":{"qualType":"void () const"}}
+   ]}
+ ]}
+]}
+)JSON";
+    ReaderOptions options;
+    options.roots.push_back("/proj/");
+    const Model model = bp::read_ast_json(Json::parse(json), options);
+
+    // Only pure operations and a virtual destructor: an interface.
+    const auto* drawable = model.find("app::Drawable");
+    CHECK(drawable != nullptr);
+    CHECK(drawable->kind == ClassifierKind::Interface);
+    CHECK(drawable->is_abstract);
+    CHECK_EQ(drawable->attributes.size(), std::size_t(0));
+
+    // One attribute is enough to disqualify it, however abstract it is.
+    const auto* widget = model.find("app::Widget");
+    CHECK(widget != nullptr);
+    CHECK(widget->kind == ClassifierKind::Class);
+    CHECK(widget->is_abstract);
+
+    // Virtual but not pure is not an interface either.
+    const auto* plain = model.find("app::Plain");
+    CHECK(plain != nullptr);
+    CHECK(plain->kind == ClassifierKind::Class);
+    CHECK(!plain->is_abstract);
+}

@@ -60,7 +60,7 @@ cmake --build build
 ctest --test-dir build --output-on-failure
 ```
 
-58 test cases in 7 suites. CTest reports one entry per suite; each entry prints its own cases.
+59 test cases in 7 suites. CTest reports one entry per suite; each entry prints its own cases.
 
 ## Run
 
@@ -173,7 +173,7 @@ megabyte. See `stdstub/README.md`.
 ```
 include/blueprint/   public headers, one per module
 src/                 the library, plus main.cpp for the command line
-tests/               the runner and 58 cases
+tests/               the runner and 59 cases
 examples/            the annotated example, the self-model unit, the behaviour specs
 stdstub/             the modelling prelude
 cmake/               the demo and measurement scripts
@@ -219,7 +219,7 @@ grep -rn 'TODO' docs/chapters docs/Main.tex docs/references.bib
 - [x] Diagram reader for both notations
 - [x] Consistency checker with a non-zero exit code
 - [x] Use case and activity models with emitters for both notations
-- [x] 58 unit tests wired to CTest
+- [x] 59 unit tests wired to CTest
 - [x] Experiments run and measured
 
 Known limits, stated rather than hidden: the diagram reader accepts the dialect Blueprint
