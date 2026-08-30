@@ -32,7 +32,7 @@ The tool builds on a clean machine from a **C++20 compiler and CMake**, and noth
 package manager, no network fetch at configure time, no third-party library.
 
 - The JSON reader is in `src/json.cpp`, about 300 lines.
-- The test runner is `tests/testing.hpp`, about 100 lines, wired to CTest with `add_test`.
+- The test runner is `tests/testing.hpp`, about 130 lines, wired to CTest with `add_test`.
 - The timing harness uses `std::chrono::steady_clock`.
 
 Clang is a **run-time** input of the extractor, not a build-time dependency. Blueprint runs
@@ -60,7 +60,9 @@ cmake --build build
 ctest --test-dir build --output-on-failure
 ```
 
-59 test cases in 7 suites. CTest reports one entry per suite; each entry prints its own cases.
+63 test cases in 8 suites. CTest reports one entry per suite; each entry prints its own cases.
+The `extract` suite drives `clang++` as a binary: it runs when the front end is on PATH and
+prints `SKIP` (CTest Skipped, exit 77) when it is not. A missing front end is never a quiet pass.
 
 ## Run
 
@@ -173,7 +175,7 @@ megabyte. See `stdstub/README.md`.
 ```
 include/blueprint/   public headers, one per module
 src/                 the library, plus main.cpp for the command line
-tests/               the runner and 59 cases
+tests/               the runner and 63 cases
 examples/            the annotated example, the self-model unit, the behaviour specs
 stdstub/             the modelling prelude
 cmake/               the demo and measurement scripts
@@ -219,7 +221,8 @@ grep -rn 'TODO' docs/chapters docs/Main.tex docs/references.bib
 - [x] Diagram reader for both notations
 - [x] Consistency checker with a non-zero exit code
 - [x] Use case and activity models with emitters for both notations
-- [x] 59 unit tests wired to CTest
+- [x] 63 unit tests wired to CTest
+- [x] GitHub Actions: cmake + ctest (extract runs with clang++, skips without it)
 - [x] Experiments run and measured
 
 Known limits, stated rather than hidden: the diagram reader accepts the dialect Blueprint

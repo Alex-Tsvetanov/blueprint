@@ -41,6 +41,23 @@ private:
     std::string what_;
 };
 
+// A case that cannot run for a stated reason. The runner prints SKIP and, when
+// every selected case is skipped, exits with kSkipExit so CTest can report the
+// suite as Skipped rather than Passed. A silent return or a soft pass would
+// hide the gap; this makes it visible.
+class Skip : public std::exception {
+public:
+    explicit Skip(std::string what) : what_(std::move(what)) {}
+    const char* what() const noexcept override { return what_.c_str(); }
+
+private:
+    std::string what_;
+};
+
+// Autotools / CMake convention: CTest marks the test Skipped on this code when
+// SKIP_RETURN_CODE is set on the test property.
+inline constexpr int kSkipExit = 77;
+
 // Values are printed on failure. Anything streamable prints itself; the two
 // overloads below cover what the tests actually compare.
 template <typename T>
@@ -108,5 +125,7 @@ int run(int argc, char** argv);
                                     ": expected " #expr " to throw");                \
         }                                                                            \
     } while (false)
+
+#define SKIP(reason) throw ::bptest::Skip(std::string(reason))
 
 #endif

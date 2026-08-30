@@ -1,0 +1,84 @@
+# Build and CTest. Clang is a run-time binary for extraction, not a linked
+# library: the extract suite RUNs when clang++ is on PATH and SKIPs honestly
+# when it is not. Both paths are exercised below.
+name: cmake-ctest
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  with-clang:
+    name: build and test (clang++ present)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake g++ ninja-build clang
+
+      - name: Configure
+        run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        run: cmake --build build
+
+      - name: Test
+        run: ctest --test-dir build --output-on-failure
+
+      - name: Confirm extract suite ran
+        run: |
+          ./build/blueprint_tests extract | tee /tmp/extract-out.txt
+          if grep -q 'SKIP' /tmp/extract-out.txt; then
+            echo "extract reported SKIP with clang++ present" >&2
+            exit 1
+          fi
+          grep -Eq '^[1-9][0-9]* passed, 0 failed, 0 skipped$' /tmp/extract-out.txt
+
+  without-clang:
+    name: build and test (clang++ absent — extract must SKIP)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install toolchain without clang++
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake g++ ninja-build
+          # Hide any preinstalled front end so the skip path is real, not accidental.
+          for b in clang++ clang; do
+            p=$(command -v "$b" || true)
+            if [ -n "$p" ]; then
+              sudo mv "$p" "${p}.ci-hidden"
+            fi
+          done
+          if command -v clang++ >/dev/null 2>&1; then
+            echo "clang++ still on PATH after hide step" >&2
+            exit 1
+          fi
+
+      - name: Configure
+        run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        run: cmake --build build
+
+      - name: Test
+        run: ctest --test-dir build --output-on-failure
+
+      - name: Confirm extract suite skipped honestly
+        run: |
+          set +e
+          out=$(./build/blueprint_tests extract 2>&1)
+          rc=$?
+          set -e
+          printf '%s\n' "$out"
+          echo "exit=$rc"
+          echo "$out" | grep -q 'SKIP'
+          echo "$out" | grep -Eq '0 passed, 0 failed, [1-9][0-9]* skipped'
+          test "$rc" -eq 77
+          summary=$(ctest --test-dir build -R '^extract$' --output-on-failure 2>&1)
+          printf '%s\n' "$summary"
+          echo "$summary" | grep -F 'Skipped'
