@@ -45,14 +45,16 @@ if(MINGW)
 endif()
 
 # ---------------------------------------------------------------------------
-# Tests. The runner lives in tests/testing.hpp: an assert macro, a registry and
-# a main. CTest sees one entry per suite; each entry prints its own cases.
+# Tests. The runner lives in tests/testing.hpp: an assert macro, a skip path, a
+# registry and a main. CTest sees one entry per suite; each entry prints its own
+# cases. The extract suite needs clang++ at run time and SKIPs when it is absent.
 # ---------------------------------------------------------------------------
 enable_testing()
 add_executable(blueprint_tests
     tests/test_main.cpp
     tests/test_json.cpp
     tests/test_reader.cpp
+    tests/test_extract.cpp
     tests/test_emit.cpp
     tests/test_diagram.cpp
     tests/test_schema.cpp
@@ -60,13 +62,21 @@ add_executable(blueprint_tests
     tests/test_behavior.cpp
 )
 target_link_libraries(blueprint_tests PRIVATE blueprint_core)
+# Live extraction needs the source tree (examples/, stdstub/) at run time.
+target_compile_definitions(blueprint_tests PRIVATE
+    "BLUEPRINT_SOURCE_DIR=\"${CMAKE_CURRENT_SOURCE_DIR}\"")
 if(MINGW)
     target_link_options(blueprint_tests PRIVATE -static-libstdc++ -static-libgcc)
 endif()
 
-foreach(suite json reader emit diagram schema diff behavior)
+foreach(suite json reader extract emit diagram schema diff behavior)
     add_test(NAME ${suite} COMMAND blueprint_tests ${suite})
 endforeach()
+# The extract suite drives clang++ as a binary. When it is missing the suite
+# exits 77 after printing SKIP for each case; CTest must report Skipped, not
+# Passed. Fixture suites never return 77, so the property is harmless on them.
+set_tests_properties(json reader extract emit diagram schema diff behavior
+    PROPERTIES SKIP_RETURN_CODE 77)
 
 # ---------------------------------------------------------------------------
 # Demo. Runs the tool over its own source tree and over the bundled annotated
